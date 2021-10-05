@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+	<!-- appender -->
+    <!-- 전달받은 로그를 어디에 출력할지 결정 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 출력할 로그의 형식 -->
+		<encoder>
+			<Pattern>%d %5p [%c] %m%n</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="console-info" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %5p %m%n</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- logger -->
+    <!-- 로그를 출력하는 요소 -->
+    <!-- level 속성을 통해 출력할 로그의 레벨을 조절하여 appender 에 전달 -->
+    <!-- fatal : 심각한 에러 발생
+    error : 요청을 처리하던 중 문제 발생
+    warn : 프로그램 실행에는 문제없지만 경고성 메시지
+    info : 상태변경과 같은 정보성 메세지
+    debug : 개발 시 디버그 용도
+    trace : 디버그 레벨의 범위 해결 -->
+	<logger name="com.d1nsol" level="DEBUG" appender-ref="console" />
+	<logger name="jdbc.sqlonly" level="INFO" appender-ref="console-info" />
+	<logger name="jdbc.resultsettable" level="INFO" appender-ref="console-info" />
+
+	<!-- root logger -->
+	<root level="off">
+		<appender-ref ref="console" />
+	</root>
+</configuration>

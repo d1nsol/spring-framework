@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -80,9 +81,30 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+
+		<!-- properties 암호화 -->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
+		<!-- Log4JDBC -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
+		<!-- 설정 파일 관리 - 개발, 테스트, 운영 -->
+		<!-- <resources>
+			<resource>
+				<directory>src/main/resources/${env}</directory>
+			</resource>
+		</resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -98,5 +120,34 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- ## 명시하지 않을 경우 dev 가 기본 profile로 적용
+	mvn clean package
+ 
+	## dev deploy
+	mvn clean package -P dev
+	
+	## production용 
+	mvn clean package -P prd -->
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<!-- maven 시에 기본 profile을 지정한다. -->
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- maven 시에 기본 profile을 지정한다. -->
+				<!-- -P 로 명시하지 않을 경우 기본 프로파일 -->
+				<env>dev</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>prd</id>
+			<properties>
+				<env>prd</env>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
