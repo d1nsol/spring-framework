@@ -55,10 +55,13 @@ public class IssueController {
         return dao.getIssue(sid);
     }
 
-    @PostMapping("/issue/insert")
-    public String insertIssue(@RequestBody IssueVO issueVo)  {
+    @PostMapping("/issue/{sid}")
+    public String insertIssue(@PathVariable("sid") int sid, @RequestBody IssueVO issueVo)  {
         logger.info("========== IssueController insertIssue()");
 
+        if(sid != 0) {
+            issueVo.setIssue_sid(sid);
+        }
         int resultCnt = dao.insertIssue(issueVo);
         
         String resultMsg = "insert fail...";
@@ -68,8 +71,8 @@ public class IssueController {
         return resultMsg;
     }
 
-    @PutMapping("/issue/put")
-    public void putIssue(@RequestParam("sid") Integer sid, @RequestParam("projNo") int projNo, @RequestParam("title") String title, @RequestParam("status") String status) {
+    @PutMapping("/issue/{sid}")
+    public void putIssue(@PathVariable("sid") Integer sid, @RequestParam("projNo") int projNo, @RequestParam("title") String title, @RequestParam("status") String status) {
         logger.info("========== IssueController putIssue()");
 
         IssueVO issueVo = new IssueVO();
@@ -80,7 +83,7 @@ public class IssueController {
         dao.insertIssue(issueVo);
     }
 
-    @DeleteMapping("/issue/delete/{sid}")
+    @DeleteMapping("/issue/{sid}")
     public String deleteIssue(@PathVariable("sid") int sid) {
         logger.info("========== IssueController deleteIssue()");
 
