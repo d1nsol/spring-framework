@@ -6,4 +6,20 @@
   <select id="issueList" resultType="IssueVO">
     select * from issue
   </select>
+
+  <select id="getIssue" parameterType="Integer" resultType="IssueVO">
+    select * from issue where issue_sid = #{sid}
+  </select>
+
+  <insert id="insertIssue" parameterType="IssueVO">
+    insert into issue
+    (issue_sid, proj_no, issue_title, status, issue_create_date, issue_start_date, issue_end_date)
+    values
+    (#{issue_sid}, #{proj_no}, #{issue_title}, #{status}, sysdate, sysdate, sysdate)
+  </insert>
+
+  <delete id="deleteIssue" parameterType="Integer">
+    delete from issue
+    where issue_sid = #{sid}
+  </delete>
 </mapper>

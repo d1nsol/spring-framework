@@ -7,4 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IssueDao {
     List<IssueVO> issueList();
+    IssueVO getIssue(int sid);
+    int insertIssue(IssueVO issueVo);
+    int deleteIssue(int sid);
 }
