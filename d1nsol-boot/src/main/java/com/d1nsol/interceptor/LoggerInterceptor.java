@@ -16,20 +16,20 @@ public class LoggerInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         
-        logger.info("==================================================");
         logger.info("================ preHandle START =================");
         logger.info("Request URI : ", request.getRequestURI());
         logger.info("Remote Addr : ", request.getRemoteAddr());
         logger.info("Remote Host : ", request.getRemoteHost());
         logger.info("Remote Port : ", request.getRemotePort());
+        logger.info("================ preHandle END ===================");
 
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        logger.info("================= postHandle END =================");
-        logger.info("==================================================");
+        logger.info("================= postHandle START =================");
+        logger.info("================= postHandle END ===================");
     }
 
     @Override

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-// @RequestMapping("/")
+@RequestMapping("")
 public class IssueController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
